@@ -9,7 +9,8 @@
   
   async function getResponse() {
     const response = await fetch(
-        'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d/metadata?_format=json',
+       // 'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d/metadata?_format=json',
+      'https://cernopen-engineering-dev.apigee.net/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d/metadata?_format=json',
         {
           method: 'GET',
           headers: {  }
