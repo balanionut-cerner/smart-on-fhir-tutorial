@@ -23,7 +23,12 @@
                   });
 
         $.when(pt, obv).fail(onError);
-
+        
+       let p1 = fetch("https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d/metadata?_format=json")
+        p1.then(data => { 
+                          debugger 
+                        }).then(data => {debugger})
+       
         $.when(pt, obv).done(function(patient, obv) {
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
