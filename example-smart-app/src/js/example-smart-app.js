@@ -6,6 +6,20 @@
       console.log('Loading error', arguments);
       ret.reject();
     }
+    
+  async function getResponse() {
+    const response = await fetch(
+        'https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d/metadata?_format=json',
+        {
+          method: 'GET',
+          headers: {  }
+        }
+      );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+  }
 
     function onReady(smart)  {
       if (smart.hasOwnProperty('patient')) {
@@ -24,10 +38,7 @@
 
         $.when(pt, obv).fail(onError);
         
-       let p1 = fetch("https://fhir-ehr-code.cerner.com/r4/ec2458f2-1e24-41c8-b71b-0e701af7583d/metadata?_format=json")
-        p1.then(data => { 
-                          debugger 
-                        }).then(data => {debugger})
+        getResponse();
        
         $.when(pt, obv).done(function(patient, obv) {
           var byCodes = smart.byCodes(obv, 'code');
